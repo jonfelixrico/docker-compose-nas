@@ -70,7 +70,7 @@ services:
     volumes:
       - ./qbittorrent:/config
       - ${DOWNLOAD_ROOT}:/data/torrents
-      - ${ONGOING_DOWNLOAD_ROOT}:/var/tmp/torrents
+      - ${ONGOING_DOWNLOAD_ROOT}:/data/ongoing-torrents
     restart: always
     healthcheck:
       # We assume that the host is running NordVPN with the killswitch on
