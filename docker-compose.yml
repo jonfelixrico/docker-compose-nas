@@ -58,8 +58,6 @@ services:
       - LOG_HTML=${LOG_HTML:-false}
       - CAPTCHA_SOLVER=${CAPTCHA_SOLVER:-none}
       - TZ=${TIMEZONE}
-    # profiles:
-    #   - flaresolverr
   qbittorrent:
     image: lscr.io/linuxserver/qbittorrent:libtorrentv1
     container_name: qbittorrent
@@ -75,8 +73,8 @@ services:
       - ${ONGOING_DOWNLOAD_ROOT}:/var/tmp/torrents
     restart: always
     healthcheck:
-      # Container may fail if the PIA's token expired, so mark as unhealthy when there is no internet connection
-      # see: https://github.com/qdm12/gluetun/issues/641#issuecomment-933856220
+      # We assume that the host is running NordVPN with the killswitch on
+      # Mark as unhealthy if there is no internet connection
       test: [ "CMD", "curl", "--fail", "http://127.0.0.1:8080", "https://google.com" ]
       interval: 30s
       retries: 10
