@@ -66,6 +66,7 @@ services:
     volumes:
       - ./qbittorrent:/config
       - ${DOWNLOAD_ROOT}:/data/torrents
+      - ${ONGOING_DOWNLOAD_ROOT}:/var/tmp/torrents
     restart: always
     healthcheck:
       # Container may fail if the PIA's token expired, so mark as unhealthy when there is no internet connection
