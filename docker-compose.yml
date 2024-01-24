@@ -24,8 +24,6 @@ services:
       test: [ "CMD", "curl", "--fail", "http://127.0.0.1:8989/sonarr/ping" ]
       interval: 30s
       retries: 10
-    ports:
-      - 8989:8989
   radarr:
     image: lscr.io/linuxserver/radarr
     container_name: radarr
@@ -44,8 +42,6 @@ services:
       test: [ "CMD", "curl", "--fail", "http://127.0.0.1:7878/radarr/ping" ]
       interval: 30s
       retries: 10
-    ports:
-      - 7878:7878
   prowlarr:
     image: lscr.io/linuxserver/prowlarr:latest
     container_name: prowlarr
@@ -63,8 +59,6 @@ services:
       test: [ "CMD", "curl", "--fail", "http://127.0.0.1:9696/prowlarr/ping" ]
       interval: 30s
       retries: 10
-    ports:
-      - 9696:9696
   flaresolverr:
     image: ghcr.io/flaresolverr/flaresolverr:latest
     container_name: flaresolverr
@@ -98,8 +92,6 @@ services:
       test: [ "CMD", "curl", "--fail", "http://127.0.0.1:8080", "https://google.com" ]
       interval: 30s
       retries: 10
-    ports:
-      - 8080:8080
   unpackerr:
     image: golift/unpackerr
     container_name: unpackerr
