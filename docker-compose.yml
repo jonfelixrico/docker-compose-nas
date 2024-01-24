@@ -3,6 +3,8 @@ services:
     image: nginxproxy/nginx-proxy:1.4-alpine
     ports:
       - 80:80
+    environment:
+      - DEFAULT_HOST=localhost
   sonarr:
     image: lscr.io/linuxserver/sonarr
     container_name: sonarr
