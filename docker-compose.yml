@@ -1,4 +1,8 @@
 services:
+  nginx:
+    image: nginxproxy/nginx-proxy:1.4-alpine
+    ports:
+      - 80:80
   sonarr:
     image: lscr.io/linuxserver/sonarr
     container_name: sonarr
@@ -6,6 +10,9 @@ services:
       - PUID=${USER_ID}
       - PGID=${GROUP_ID}
       - TZ=${TIMEZONE}
+      - VIRTUAL_HOST=localhost
+      - VIRTUAL_PORT=8989
+      - VIRTUAL_PATH=/sonarr/
     volumes:
       - ./sonarr:/config
       - ${DATA_ROOT}:/data
@@ -14,8 +21,6 @@ services:
       test: [ "CMD", "curl", "--fail", "http://127.0.0.1:8989/sonarr/ping" ]
       interval: 30s
       retries: 10
-    ports:
-      - 8989:8989
   radarr:
     image: lscr.io/linuxserver/radarr
     container_name: radarr
@@ -23,6 +28,9 @@ services:
       - PUID=${USER_ID}
       - PGID=${GROUP_ID}
       - TZ=${TIMEZONE}
+      - VIRTUAL_HOST=localhost
+      - VIRTUAL_PORT=7878
+      - VIRTUAL_PATH=/radarr/
     volumes:
       - ./radarr:/config
       - ${DATA_ROOT}:/data
@@ -31,8 +39,6 @@ services:
       test: [ "CMD", "curl", "--fail", "http://127.0.0.1:7878/radarr/ping" ]
       interval: 30s
       retries: 10
-    ports:
-      - 7878:7878
   prowlarr:
     image: lscr.io/linuxserver/prowlarr:latest
     container_name: prowlarr
@@ -40,6 +46,9 @@ services:
       - PUID=${USER_ID}
       - PGID=${GROUP_ID}
       - TZ=${TIMEZONE}
+      - VIRTUAL_HOST=localhost
+      - VIRTUAL_PORT=9696
+      - VIRTUAL_PATH=/prowlarr/
     volumes:
       - ./prowlarr:/config
     restart: always
@@ -71,6 +80,10 @@ services:
       - ./qbittorrent:/config
       - ${DOWNLOAD_ROOT}:/data/torrents
       - ${ONGOING_DOWNLOAD_ROOT}:/data/ongoing-torrents
+      - VIRTUAL_HOST=localhost
+      - VIRTUAL_PORT=8080
+      - VIRTUAL_PATH=/qbittorrent/
+      - VIRTUAL_DEST=/
     restart: always
     healthcheck:
       # We assume that the host is running NordVPN with the killswitch on
@@ -78,8 +91,6 @@ services:
       test: [ "CMD", "curl", "--fail", "http://127.0.0.1:8080", "https://google.com" ]
       interval: 30s
       retries: 10
-    ports:
-      - 8080:8080
   unpackerr:
     image: golift/unpackerr
     container_name: unpackerr
