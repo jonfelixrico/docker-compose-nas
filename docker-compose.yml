@@ -12,7 +12,6 @@ services:
       - PUID=${USER_ID}
       - PGID=${GROUP_ID}
       - TZ=${TIMEZONE}
-      - VIRTUAL_HOST=*
       - VIRTUAL_PORT=8989
       - VIRTUAL_PATH=/sonarr/
     volumes:
@@ -30,7 +29,6 @@ services:
       - PUID=${USER_ID}
       - PGID=${GROUP_ID}
       - TZ=${TIMEZONE}
-      - VIRTUAL_HOST=*
       - VIRTUAL_PORT=7878
       - VIRTUAL_PATH=/radarr/
     volumes:
@@ -48,7 +46,6 @@ services:
       - PUID=${USER_ID}
       - PGID=${GROUP_ID}
       - TZ=${TIMEZONE}
-      - VIRTUAL_HOST=*
       - VIRTUAL_PORT=9696
       - VIRTUAL_PATH=/prowlarr/
     volumes:
@@ -76,7 +73,6 @@ services:
       - TZ=${TIMEZONE}
       - WEBUI_PORT=8080
       - DOCKER_MODS=ghcr.io/gabe565/linuxserver-mod-vuetorrent
-      - VIRTUAL_HOST=*
       - VIRTUAL_PORT=8080
       - VIRTUAL_PATH=/qbittorrent/
       - VIRTUAL_DEST=/
