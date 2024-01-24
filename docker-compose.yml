@@ -74,14 +74,14 @@ services:
       - TZ=${TIMEZONE}
       - WEBUI_PORT=8080
       - DOCKER_MODS=ghcr.io/gabe565/linuxserver-mod-vuetorrent
-    volumes:
-      - ./qbittorrent:/config
-      - ${DOWNLOAD_ROOT}:/data/torrents
-      - ${ONGOING_DOWNLOAD_ROOT}:/data/ongoing-torrents
       - VIRTUAL_HOST=localhost
       - VIRTUAL_PORT=8080
       - VIRTUAL_PATH=/qbittorrent/
       - VIRTUAL_DEST=/
+    volumes:
+      - ./qbittorrent:/config
+      - ${DOWNLOAD_ROOT}:/data/torrents
+      - ${ONGOING_DOWNLOAD_ROOT}:/data/ongoing-torrents
     restart: always
     healthcheck:
       # We assume that the host is running NordVPN with the killswitch on
