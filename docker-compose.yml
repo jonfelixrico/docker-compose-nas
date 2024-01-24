@@ -14,6 +14,7 @@ services:
       - TZ=${TIMEZONE}
       - VIRTUAL_PORT=8989
       - VIRTUAL_PATH=/sonarr/
+      - VIRTUAL_HOST=${HOSTNAME}
     volumes:
       - ./sonarr:/config
       - ${DATA_ROOT}:/data
@@ -31,6 +32,7 @@ services:
       - TZ=${TIMEZONE}
       - VIRTUAL_PORT=7878
       - VIRTUAL_PATH=/radarr/
+      - VIRTUAL_HOST=${HOSTNAME}
     volumes:
       - ./radarr:/config
       - ${DATA_ROOT}:/data
@@ -48,6 +50,7 @@ services:
       - TZ=${TIMEZONE}
       - VIRTUAL_PORT=9696
       - VIRTUAL_PATH=/prowlarr/
+      - VIRTUAL_HOST=${HOSTNAME}
     volumes:
       - ./prowlarr:/config
     restart: always
@@ -76,6 +79,7 @@ services:
       - VIRTUAL_PORT=8080
       - VIRTUAL_PATH=/qbittorrent/
       - VIRTUAL_DEST=/
+      - VIRTUAL_HOST=${HOSTNAME}
     volumes:
       - ./qbittorrent:/config
       - ${DOWNLOAD_ROOT}:/data/torrents
