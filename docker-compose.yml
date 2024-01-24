@@ -1,5 +1,6 @@
 services:
   nginx:
+    container_name: nginx
     image: nginxproxy/nginx-proxy:1.4-alpine
     ports:
       - 80:80
