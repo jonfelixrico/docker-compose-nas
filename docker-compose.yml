@@ -6,6 +6,7 @@ services:
       - 80:80
     volumes:
       - /var/run/docker.sock:/tmp/docker.sock:ro
+    restart: always
   sonarr:
     image: lscr.io/linuxserver/sonarr
     container_name: sonarr
